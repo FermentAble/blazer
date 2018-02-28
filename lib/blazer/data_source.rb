@@ -145,10 +145,6 @@ module Blazer
 
     def adapter_instance
       @adapter_instance ||= begin
-        unless settings["url"] || Rails.env.development? || ["bigquery", "athena"].include?(settings["adapter"])
-          raise Blazer::Error, "Empty url for data source: #{id}"
-        end
-
         unless Blazer.adapters[adapter]
           raise Blazer::Error, "Unknown adapter"
         end
